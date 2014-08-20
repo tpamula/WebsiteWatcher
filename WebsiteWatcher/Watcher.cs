@@ -61,9 +61,25 @@ namespace WebsiteWatcher
 
             while (_searchAllowed)
             {
-                string websiteContent = string.IsNullOrEmpty(MockedWebsiteContent)
-                    ? webClient.DownloadString(_targetWebsite)
-                    : MockedWebsiteContent;
+                string websiteContent;
+                if (string.IsNullOrEmpty(MockedWebsiteContent))
+                {
+                    try
+                    {
+                        websiteContent = webClient.DownloadString(_targetWebsite);
+                    }
+                    catch
+                    {
+                        // word is unavailable. raise the event
+                        // could happen when site becomes 404'd
+                        OnWordDisappeared();
+                        break;
+                    }
+                }
+                else
+                {
+                    websiteContent = MockedWebsiteContent;
+                }
 
                 if (!websiteContent.Contains(_searchFor))
                 {
