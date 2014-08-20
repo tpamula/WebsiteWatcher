@@ -36,7 +36,10 @@ namespace WebsiteWatcher
             GRoot.Children.Add(lHeartbeatTimeStamp);
 
             watcher.Hearbeat +=
-                () => Dispatcher.Invoke(() => { lHeartbeatTimeStamp.Content = DateTime.Now.ToString("HH:mm:ss dd.mm.yyyy"); });
+                () => Dispatcher.Invoke(() =>
+                {
+                    lHeartbeatTimeStamp.Content = DateTime.Now.ToString("HH:mm:ss dd.MM.yyyy");
+                });
         }
 
         private void ShowAlarm()
@@ -58,6 +61,7 @@ namespace WebsiteWatcher
             storyboard.Children.Add(fillerAnimation);
             Storyboard.SetTargetProperty(fillerAnimation, new PropertyPath("Background.Color"));
 
+            Activate();
             Application.Current.MainWindow.WindowState = WindowState.Maximized;
             storyboard.Begin((FrameworkElement)GRoot.Parent);
         }
