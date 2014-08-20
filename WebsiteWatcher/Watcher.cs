@@ -10,7 +10,7 @@ namespace WebsiteWatcher
         private readonly string _searchFor;
         private readonly int _checkIntervalInMs;
         private readonly string _targetWebsite;
-        private bool _searchAllowed;
+        private volatile bool _searchAllowed;
 
         public Watcher(string searchFor, int checkIntervalInMs, string targetWebsite)
         {
@@ -19,11 +19,13 @@ namespace WebsiteWatcher
             _targetWebsite = targetWebsite;
         }
 
-        public event Action WordFound;
+        public event Action WordDisappeared;
 
-        protected virtual void OnWordFound()
+        protected virtual void OnWordDisappeared()
         {
-            Action handler = WordFound;
+            Stop();
+
+            Action handler = WordDisappeared;
             if (handler != null) handler();
         }
 
@@ -56,16 +58,17 @@ namespace WebsiteWatcher
 
         private void PerformSearch()
         {
+            var webClient = new WebClient();
+
             while (_searchAllowed)
             {
-                var webClient = new WebClient();
                 string websiteContent = string.IsNullOrEmpty(MockedWebsiteContent)
                     ? webClient.DownloadString(_targetWebsite)
                     : MockedWebsiteContent;
 
                 if (!websiteContent.Contains(_searchFor))
                 {
-                    OnWordFound();
+                    OnWordDisappeared();
                     break;
                 }
                 OnHeartbeat();

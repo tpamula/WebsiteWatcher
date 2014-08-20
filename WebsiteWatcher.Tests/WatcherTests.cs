@@ -15,7 +15,7 @@ namespace WebsiteWatcher.Tests
             };
 
             bool wordFound = false;
-            watcherCore.WordFound += () => { wordFound = true; };
+            watcherCore.WordDisappeared += () => { wordFound = true; };
             watcherCore.Run();
 
             // Time should be faked but quick and dirty solution is preffered.
@@ -34,7 +34,7 @@ namespace WebsiteWatcher.Tests
             };
 
             bool wordFound = false;
-            watcherCore.WordFound += () => { wordFound = true; };
+            watcherCore.WordDisappeared += () => { wordFound = true; };
             watcherCore.Run();
 
             // Time should be faked but quick and dirty solution is preffered.
@@ -53,7 +53,7 @@ namespace WebsiteWatcher.Tests
             };
 
             bool wordFound = false;
-            watcherCore.WordFound += () => { wordFound = true; };
+            watcherCore.WordDisappeared += () => { wordFound = true; };
             watcherCore.Run();
 
             // Time should be faked but quick and dirty solution is preffered.

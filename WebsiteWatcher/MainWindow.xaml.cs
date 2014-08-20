@@ -24,7 +24,7 @@ namespace WebsiteWatcher
 
             var watcher = new Watcher(keyword, interval, targetWebsite);
             watcher.Run();
-            watcher.WordFound += () => Dispatcher.Invoke(ShowAlarm);
+            watcher.WordDisappeared += () => Dispatcher.Invoke(ShowAlarm);
 
             ShowHeartbeats(watcher);
         }
