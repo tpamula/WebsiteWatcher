@@ -7,10 +7,11 @@ namespace WebsiteWatcher
 {
     public class Watcher
     {
-        private readonly string _searchFor;
         private readonly int _checkIntervalInMs;
+        private readonly string _searchFor;
         private readonly string _targetWebsite;
         private volatile bool _searchAllowed;
+        private Task _searchTask;
 
         public Watcher(string searchFor, int checkIntervalInMs, string targetWebsite)
         {
@@ -19,25 +20,11 @@ namespace WebsiteWatcher
             _targetWebsite = targetWebsite;
         }
 
-        public event Action WordDisappeared;
-
-        protected virtual void OnWordDisappeared()
-        {
-            Stop();
-
-            Action handler = WordDisappeared;
-            if (handler != null) handler();
-        }
-
         public event Action Hearbeat;
 
-        protected virtual void OnHeartbeat()
-        {
-            Action handler = Hearbeat;
-            if (handler != null) handler();
-        }
+        public event Action WordDisappeared;
 
-        private Task _searchTask;
+        public string MockedWebsiteContent { get; set; }
 
         public void Run()
         {
@@ -54,7 +41,19 @@ namespace WebsiteWatcher
             _searchTask = null;
         }
 
-        public string MockedWebsiteContent { get; set; }
+        protected virtual void OnHeartbeat()
+        {
+            Action handler = Hearbeat;
+            if (handler != null) handler();
+        }
+
+        protected virtual void OnWordDisappeared()
+        {
+            Stop();
+
+            Action handler = WordDisappeared;
+            if (handler != null) handler();
+        }
 
         private void PerformSearch()
         {

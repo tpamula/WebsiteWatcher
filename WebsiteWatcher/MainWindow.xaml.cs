@@ -29,19 +29,6 @@ namespace WebsiteWatcher
             ShowHeartbeats(watcher);
         }
 
-        private void ShowHeartbeats(Watcher watcher)
-        {
-            var lHeartbeatTimeStamp = new Label();
-            GRoot.Children.Clear();
-            GRoot.Children.Add(lHeartbeatTimeStamp);
-
-            watcher.Hearbeat +=
-                () => Dispatcher.Invoke(() =>
-                {
-                    lHeartbeatTimeStamp.Content = DateTime.Now.ToString("HH:mm:ss dd.MM.yyyy");
-                });
-        }
-
         private void ShowAlarm()
         {
             GRoot.Children.Clear();
@@ -64,6 +51,19 @@ namespace WebsiteWatcher
             Activate();
             Application.Current.MainWindow.WindowState = WindowState.Maximized;
             storyboard.Begin((FrameworkElement)GRoot.Parent);
+        }
+
+        private void ShowHeartbeats(Watcher watcher)
+        {
+            var lHeartbeatTimeStamp = new Label();
+            GRoot.Children.Clear();
+            GRoot.Children.Add(lHeartbeatTimeStamp);
+
+            watcher.Hearbeat +=
+                () => Dispatcher.Invoke(() =>
+                {
+                    lHeartbeatTimeStamp.Content = DateTime.Now.ToString("HH:mm:ss dd.MM.yyyy");
+                });
         }
     }
 }
