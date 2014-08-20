@@ -42,5 +42,26 @@ namespace WebsiteWatcher.Tests
 
             Assert.True(wordFound);
         }
+
+        [Fact]
+        private void should_signal_when_word_disappears()
+        {
+            var watcherCore = new Watcher(searchFor: "justTesting", checkIntervalInMs: 10,
+                targetWebsite: "will not be used")
+            {
+                MockedWebsiteContent = "some content without search keyword"
+            };
+
+            bool wordFound = false;
+            watcherCore.WordFound += () => { wordFound = true; };
+            watcherCore.Run();
+
+            // Time should be faked but quick and dirty solution is preffered.
+            Thread.Sleep(10);
+            watcherCore.MockedWebsiteContent = "keyword: justTesting!!";
+            Thread.Sleep(10);
+
+            Assert.True(wordFound);
+        }
     }
 }
