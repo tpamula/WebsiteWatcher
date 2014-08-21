@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -25,8 +27,18 @@ namespace WebsiteWatcher
             var watcher = new Watcher(keyword, interval, targetWebsite);
             watcher.Run();
             watcher.WordDisappeared += () => Dispatcher.Invoke(ShowAlarm);
+            watcher.WordDisappeared += () => Task.Factory.StartNew(RingAlarm);
 
             ShowHeartbeats(watcher);
+        }
+
+        private void RingAlarm()
+        {
+            while (true)
+            {
+                System.Media.SystemSounds.Exclamation.Play();
+                Thread.Sleep(1000);
+            }
         }
 
         private void ShowAlarm()

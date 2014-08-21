@@ -15,8 +15,8 @@
         </Grid.ColumnDefinitions>
         <Label Content="Target website:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Center" />
         <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0"  VerticalAlignment="Center" Width="199" Name="TbTargetWebsite" />
-        <Label Content="Alert when this keyword is not present." HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" Grid.Column="0"
-               VerticalAlignment="Center" />
+        <Label Content="Alert when this keyword is not present:" Margin="10,11,0,1" Grid.Row="1" Grid.Column="0"
+               VerticalAlignment="Center" HorizontalAlignment="Left" Width="215" />
         <TextBox Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="199" Name="TbKeyword" />
         <Label Content="Search interval [ms]:" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" Grid.Column="0"
                VerticalAlignment="Center" />
