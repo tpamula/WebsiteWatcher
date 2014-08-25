@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebsiteWatcher", "WebsiteWatcher\WebsiteWatcher.csproj", "{EA25DEF4-E524-4A2E-ACE7-BF3B46226A1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebsiteWatcher.Tests", "WebsiteWatcher.Tests\WebsiteWatcher.Tests.csproj", "{F701B2FC-B28C-4C33-9A18-484ADEBBA48B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{EA25DEF4-E524-4A2E-ACE7-BF3B46226A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA25DEF4-E524-4A2E-ACE7-BF3B46226A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA25DEF4-E524-4A2E-ACE7-BF3B46226A1C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F701B2FC-B28C-4C33-9A18-484ADEBBA48B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F701B2FC-B28C-4C33-9A18-484ADEBBA48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F701B2FC-B28C-4C33-9A18-484ADEBBA48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F701B2FC-B28C-4C33-9A18-484ADEBBA48B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

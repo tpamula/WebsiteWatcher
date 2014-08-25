@@ -3,9 +3,9 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WebsiteWatcher
+namespace WebsiteWatcher.Model
 {
-    public class Watcher
+    public class WebsiteWatcher
     {
         private readonly int _checkIntervalInMs;
         private readonly string _searchFor;
@@ -13,7 +13,7 @@ namespace WebsiteWatcher
         private volatile bool _searchAllowed;
         private Task _searchTask;
 
-        public Watcher(string searchFor, int checkIntervalInMs, string targetWebsite)
+        public WebsiteWatcher(string searchFor, int checkIntervalInMs, string targetWebsite)
         {
             _searchFor = searchFor;
             _checkIntervalInMs = checkIntervalInMs;

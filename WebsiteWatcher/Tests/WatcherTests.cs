@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using WebsiteWatcher.Model;
 using Xunit;
 
 namespace WebsiteWatcher.Tests
@@ -8,7 +9,7 @@ namespace WebsiteWatcher.Tests
         [Fact]
         private void should_not_signal_when_word_found()
         {
-            var watcherCore = new Watcher(searchFor: "justTesting", checkIntervalInMs: 10,
+            var watcherCore = new Model.WebsiteWatcher(searchFor: "justTesting", checkIntervalInMs: 10,
                 targetWebsite: "will not be used")
             {
                 MockedWebsiteContent = "some content with a keyword: justTesting"
@@ -27,7 +28,7 @@ namespace WebsiteWatcher.Tests
         [Fact]
         private void should_signal_when_word_disappears()
         {
-            var watcherCore = new Watcher(searchFor: "justTesting", checkIntervalInMs: 10,
+            var watcherCore = new Model.WebsiteWatcher(searchFor: "justTesting", checkIntervalInMs: 10,
                 targetWebsite: "will not be used")
             {
                 MockedWebsiteContent = "some content without search keyword"
@@ -48,7 +49,7 @@ namespace WebsiteWatcher.Tests
         [Fact]
         private void should_signal_when_word_not_found()
         {
-            var watcherCore = new Watcher(searchFor: "justTesting", checkIntervalInMs: 10,
+            var watcherCore = new Model.WebsiteWatcher(searchFor: "justTesting", checkIntervalInMs: 10,
                 targetWebsite: "will not be used")
             {
                 MockedWebsiteContent = "some content without search keyword"

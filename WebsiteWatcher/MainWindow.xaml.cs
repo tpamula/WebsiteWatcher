@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using WebsiteWatcher.Model;
 
 namespace WebsiteWatcher
 {
@@ -24,7 +25,7 @@ namespace WebsiteWatcher
             string keyword = TbKeyword.Text;
             int interval = Convert.ToInt32(TbInterval.Text);
 
-            var watcher = new Watcher(keyword, interval, targetWebsite);
+            var watcher = new Model.WebsiteWatcher(keyword, interval, targetWebsite);
             watcher.Run();
             watcher.WordDisappeared += () => Dispatcher.Invoke(ShowAlarm);
             watcher.WordDisappeared += () => Task.Factory.StartNew(RingAlarm);
@@ -65,13 +66,13 @@ namespace WebsiteWatcher
             storyboard.Begin((FrameworkElement)GRoot.Parent);
         }
 
-        private void ShowHeartbeats(Watcher watcher)
+        private void ShowHeartbeats(Model.WebsiteWatcher websiteWatcher)
         {
             var lHeartbeatTimeStamp = new Label();
             GRoot.Children.Clear();
             GRoot.Children.Add(lHeartbeatTimeStamp);
 
-            watcher.Hearbeat +=
+            websiteWatcher.Hearbeat +=
                 () => Dispatcher.Invoke(() =>
                 {
                     lHeartbeatTimeStamp.Content = DateTime.Now.ToString("HH:mm:ss dd.MM.yyyy");
